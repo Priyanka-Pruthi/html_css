@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Html5 Registeration Form
+        </title>
+        <style>
+            body
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                background: #f1e1e1df;
+                padding: 20px;
+            }
+
+            form
+            {
+                background: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                width: 350px;
+                margin: auto;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+            label
+            {
+                display: block;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+            input
+            {
+                width: 90%;
+                padding: 8px;
+                margin-top: 5px;
+            }
+            input:hover
+            {
+                border-color: aquamarine;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+            }
+            input:valid
+            {
+                border-color: green;
+
+            }
+             input:invalid
+            {
+                border-color: rgb(219, 56, 56);
+                
+            }
+            meter,progress
+            {
+                width: 80%;
+                height: 20px;
+                margin-top: 5px;
+            }
+
+            button
+            {
+                margin-top: 20px;
+                background: #007BFF;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            button:hover
+            {
+                background: #0056b3;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <form id="registerationForm">
+           <h3>Registeration Form</h3>
+
+           <!--Name -->
+           <label for="name">Full Name</label>
+           <input type="text" id="name" name="name" placeholder="John Deo" pattern="^[A-Za-z\s]+$" 
+           title="Only letters and spaces are allowed"
+           required/>
+
+           <!--DOb-->
+           <label for="dob">Date Of Birth</label>
+           <input type="date" id="dob" name="dob" required/>
+
+           <!--Age-->
+           <label for="age">Age</label>
+           <input type="number" min="1" required/>
+
+           <!--email-->
+           <label for="email">Email</label>
+           <input type="email" id="email" name="email" required/>
+
+           <!--Password-->
+           <label for="password">Password</label>
+           <input type="password" id="password" name="password"
+           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=[@#]).{8,20}$"
+           title="Must be atleat 8 characters, contains uppercase , lowercase and @ or #"/>
+
+           <!--Password Strength-->
+           <label for="password-strength">Password Strength</label>
+           <meter id="password-strength" min="0" max="4" value="0"></meter>
+
+           <!--Form Completion-->
+           <label>Form Completion</label>
+           <progress id="form-progress" value="0" max="5"></progress>
+
+           <button type="submit">Registeration</button>
+
+
+        </form>
+
+        <script>
+            const passwordInput = document.getElementById("password");
+            const passwordStrength = document.getElementById("password-strength");
+
+            passwordInput.addEventListener('input',()=>{
+                let strength = 0;
+                if(passwordInput.value.length>=8)
+                 strength++;
+
+                 if(/[A-Z]/.test(passwordInput.value))
+                 strength++;
+
+                 if(/[a-z]/.test(passwordInput.value))
+                 strength++;
+
+                 if(/[@#]/.test(passwordInput.value))
+                 strength++;
+
+                 passwordStrength.value = strength;
+
+            })
+
+
+        </script>
+    </body>
+</html>
